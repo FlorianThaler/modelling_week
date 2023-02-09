@@ -1,0 +1,21 @@
+MAIN_DOCUMENT_BASE_NAME = main
+MAIN_DOCUMENT_FILE_NAME = ${MAIN_DOCUMENT_BASE_NAME}.tex
+
+PDF_VIEWER = okular
+PDFLATEX_CMD = pdflatex
+BIBTEX_CMD = bibtex
+
+.PHONY: pdf
+pdf:
+	${PDFLATEX_CMD} ${MAIN_DOCUMENT_FILE_NAME}
+	-${BIBTEX_CMD} ${MAIN_DOCUMENT_BASE_NAME}
+	${PDFLATEX_CMD} ${MAIN_DOCUMENT_FILE_NAME}
+	${PDFLATEX_CMD} ${MAIN_DOCUMENT_FILE_NAME}
+
+.PHONY: view
+view: pdf
+	${PDF_VIEWER} ${MAIN_DOCUMENT_BASE_NAME}.pdf
+
+.PHONY: clean
+clean:
+	-rm -r *.aux *.toc *.log *.nav *.out *.snm *.bbl *.blg -f

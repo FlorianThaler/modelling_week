@@ -1,0 +1,56 @@
+\documentclass[
+    a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper, ...
+    % landscape,   %% sets the orientation to landscape
+    % twoside,     %% changes to a two-page-layout (alternatively: oneside)
+    % twocolumn,   %% changes to a two-column-layout
+        headsepline, %% add a horizontal line below the column title
+    % footsepline, %% add a horizontal line above the page footer
+    % titlepage,   %% only the titlepage (using titlepage-environment) appears on the first page (alternatively: notitlepage)
+        halfparskip,     %% insert an empty line between two paragraphs (alternatively: halfparskip, ...)
+    % leqno,       %% equation numbers left (instead of right)
+        fleqn,       %% equation left-justified (instead of centered)
+    % tablecaptionabove, %% captions of tables are above the tables (alternatively: tablecaptionbelow)
+    % draft,       %% produce only a draft version (mark lines that need manual edition and don't show graphics)
+    % 10pt         %% set default font size to 10 point
+    % 11pt         %% set default font size to 11 point
+    10pt         %% set default font size to 12 point
+    ]{scrartcl}  %% article, see KOMA documentation (scrguide.dvi)
+    
+    
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% packages
+%%%
+        
+%%%
+%%% encoding and language set
+%%%
+
+\usepackage[ngerman]{babel}
+
+%%% inputenc: coding of german special characters
+\usepackage[latin1]{inputenc}
+
+%%% fontenc, ae, aecompl: coding of characters in PDF documents
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+\usepackage{xcolor}
+
+\begin{document}
+    \section*{Mathematische Spieltheorie}
+    \subsubsection*{Konkurrenz vs. Kooperation}
+
+    Was haben das Elfmeterschie{\ss}en im Fu{\ss}ball, der Kampf der Geschlechter und Nachbarschaftsstreitigkeiten 
+    gemein? Auf den ersten Blick nicht viel wie es scheint. All diese Situationen/Probleme jedoch lassen sich
+    als sog. strategische Spiele modellieren und mit Werkzeugen aus dem Bereich der mathematischen Spieltheorie
+    analysieren.
+    \newline
+    Wir werden in den kommenden Tagen auf den Spuren von John Nash und John v. Neumann wandeln und uns mit  
+    mathematischer Spieltheorie befassen. Mit den Konzepten die wir in diesem Zusammenhang kennenlernen, werden 
+    wir versuchen die oben genannten Situationen zu diskutieren und optimale Strategien f{\"u}r die 
+    beteiligten Parteien/Spieler abzuleiten. Ganz besonders interessiert uns dabei die Frage ob die aus subjektiver Sicht optimale
+    Strategie eines Spieler tats{\"a}chlich die beste aller m{\"o}glichen Strategien ist. Kann kooperatives Verhalten den Spielausgang
+    f{\"u}r beide Spieler positiv beeinflussen?
+\end{document}

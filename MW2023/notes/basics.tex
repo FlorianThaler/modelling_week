@@ -1,0 +1,284 @@
+Mathematical game theory considers single or repeated interactions between several so called rational players. A player is said to be rational if he 
+tries to maximise his own payoff. Additionally it is assumed that all the players make their decisions simultaneously and independent from each other.
+
+\begin{definition}\label{def:game}
+    Let $n\in\nats$, $\mathcal{P} = \{1, \ldots, n\}$, let $S_{1}, \ldots, S_{n}$ be non-empty sets and let $\pi_{i}:S\to\reals$, $1\leq i\leq n$, where
+    $S = \prod_{i = 1}^{n}S_{i}$. Letting $\pi = (\pi_{1}, \ldots, \pi_{n})$, the pair $G = (S, \pi)$ is called a $n$ player strategic game with set
+    of players $\mathcal{P}$. For every player $i\in\mathcal{P}$ the set $S_{i}$ is called the set of strategies and the mapping 
+    $\pi_i$ is called the payoff function of the $i$-th player.
+\end{definition}
+
+\begin{remark}
+    A strategy in this context is an action or a control which a player will take or apply.
+\end{remark}
+
+There is no general solution concept of a strategic game, and hence no general definition of what exactly a solution is in this context. There are different 
+approaches like Nash equilibrium, Pareto optimality, or strict dominance with the purpose of finding strategies
+which are in a certain sense optimal for the players involved. We will introduce here only the concept of Nash equilibria. Before introducing this concept some
+examples are listed and discussed.
+
+\begin{example}[The prisoner's dilemma] 
+    Two suspects in a severe crime and a small robbery are put into separate cells. Both are in solitary confinemnent, which does not give them the possibility
+    to communicate with each other. The police has enough evidence to convict them for the robbery, but no evidence for the more severe crime. Thus the police
+    gives both of them the offer to confess: If both of them confess the crime, then both will spend 10 years in jail. If only one confesses and acts as a
+    withness against the other, he will receive no punishment, where the other one will be sent to jail for 15 years. If none of them confesses both will be judged
+    for the rubbery and will be sent to jail for 1 year each. The courses of action open to each prisoner is $q$ = keep quiet, or $s$ = squeal. The payoffs of each 
+    player are given in terms of freedom lost. In the notation of Definition \ref{def:game} we have
+    \begin{enumerate}
+        \item $S_{1} = S_{2} = \{q, s\}$
+        \item $\pi_{1}(q, q) = -1$, $\pi_{1}(q, s) = -15$, $\pi_{1}(s, q) = 0$, $\pi_{1}(s, s) = -10$, and 
+                $\pi_{2}(q, q) = -1$, $\pi_{2}(q, s) = 0$, $\pi_{2}(s, q) = -15$, $\pi_{2}(s, s) = -10$.
+    \end{enumerate}
+    Hence we infer that the prisoner's dilemma is a strategic game in the sense of Definition \ref{def:game}. A convenient way to represent this game and more general
+    strategic games of small strategy sets is the following 
+    \newline
+    \begin{center}
+        \begin{tabular}{c | r | c | c |}
+            \multicolumn{2}{c}{} & \multicolumn{2}{c}{Player 2}\\
+            \cline{2-4}
+            & & $q$ & $s$ \\
+            \cline{2-4}
+            \multirow{2}{*}{Player 1} & $q$ & (-1, -1) & (-15, 0) \\
+            \cline{2-4}
+            & $s$ & (0, -15) & (-10, -10)) \\
+            \cline{2-4}
+        \end{tabular}            
+    \end{center}
+    What should each of the prisoners do - which strategy should any of them choose? Let us consider first player 1. If player 2 keeps quiet, then player 1 should squeal
+    in order to minimize the number of years he has to go to jail. If on the other hand player 2 squeals, then also player 1 should squeal. This means player 1 should - 
+    following this reasoning - squeal in any case. Similarly player 2 should always squeal. But the table shows that if both of the prisoners follow their self-interests 
+    (minimizing the number number years in jail) they will end up worse as if they kept quiet. This observation makes this example so interesting. The fact that
+    the prisoner's dilemma has a lot of applications in real world makes it even more interesting. Consider it for example in the context of the cold war or in the context
+    of paying taxes. Whatever any person does - in regard of our personal financial wealth it pays off to pay no taxes. But if no taxes are paid, then there is no money
+    for common goods. Thus the community is worse off than if people would have paid their taxes.
+\end{example}
+
+\begin{example}[First price auction]
+    Let us consider an auction of a single object. Let us assume that there is a set of $n$ bidders. Each of the assigns the object a value - let $v_{i}$ the value assigned
+    by the $i$-th bidder. For the sake of simplicity we assume that $v_{1} > \ldots > v_{n} > 0$. The auction is held as follows:
+    \begin{enumerate}
+        \item The players submit their bid simultaneously and independently
+        \item The object is assigned to the player with the smallest index among the players which placed the largest bid.
+        \item The players which gets the object pays the bid.
+    \end{enumerate}
+    This auction defines a strategic $n$ player game $G = (S, \pi)$, where $S_{i} = \reals_{\geq0}$ and 
+    \begin{align*}
+        \pi_{k}(s_{1}, \ldots, s_{n}) = 
+            \begin{cases}
+                v_{i} - s_{i} \text{ if } i = \max\{k : 1\leq k\leq n, a_{k} = max_{1\leq l\leq n}s_{l}\} \\
+                0 \text{ else}
+            \end{cases}
+    \end{align*}
+    for $i = 1, \ldots, n$.
+\end{example}
+
+\begin{example}[Matching pennies]\label{ex:pennies}
+    Two players place simultaneously and independently a penny on a table - or heads up (strategy $h$) or tails up (strategy $t$). If the pennies match (i.e. both heads or both
+    tails) then player 1 wins and keeps both pennies. In the other case player 2 wins and gets both pennies. The game can be represented in tabular form as follows
+    \newline
+    \begin{center}
+        \begin{tabular}{c | r | c | c |}
+            \multicolumn{2}{c}{} & \multicolumn{2}{c}{Player 2}\\
+            \cline{2-4}
+            & & $h$ & $t$ \\
+            \cline{2-4}
+            \multirow{2}{*}{Player 1} & $h$ & (1, -1) & (-1, 1) \\
+            \cline{2-4}
+            & $t$ & (-1, 1) & (1, -1)) \\
+            \cline{2-4}
+        \end{tabular}            
+    \end{center}
+    We may pose the question:
+    \begin{addmargin}[75pt]{0pt}
+        Is there a strategy pair such that no player gains 
+        \newline
+        when unilaterally deviating from it?
+    \end{addmargin}
+    In the given case there is none. Let us consider exemplary the case where both of the players play head. Then for player 2 it would pay off if he would play tale.
+\end{example}
+
+Any pair of strategies having the property mentioned in Example \ref{ex:pennies} is called a Nash equilibrium, which will be introduced more formally next. For the sake of
+simplicity we will consider henceforth only two player games. The principles can be generalised easily to more general situations - see \cite{webb2007game}, \cite{gonzalez2010introductory}.
+
+\begin{definition}
+    Let $G = (S, \pi)$ be a strategic game, and let $\sigma_{1}^{*}\in S_{1}$, $\sigma_{2}^{*}\in S_{2}$. Then $(s_{1}^{*}, s_{2}^{*})$ is called a
+    Nash equilibrium if 
+    \begin{equation*}
+        \pi_{1}(s_{1}^{*}, s_{2}^{*}) \geq \pi_{1}(s_{1}, s_{2}^{*}), s_{1}\in S_{1} \text{ and }
+            \pi_{2}(s_{1}^{*}, s_{2}^{*}) \geq \pi_{2}(s_{1}^{*}, s_{2}), s_{2}\in S_{2}.
+    \end{equation*}
+\end{definition}
+
+\begin{remark}
+    \begin{enumerate}
+        \item There can be more than one Nash equilibrium, i.e. Nash equilibria are not unique.
+        \item Not every game has a Nash equilibrium as Example \ref{ex:pennies} indicates. However it can be shown that strategic games under certain 
+            assumptions do always have at least one Nash uquilibrium. This result is known as Nash's theorem, which will be stated down below without
+            proof.
+        \item The pair $(s, s)$ is a Nash equilibrium for the prisoner's dilemma. 
+    \end{enumerate}
+\end{remark}
+
+Before stating Nash's theorem let us introduce some notation. For every $x\in\reals^{k}$, every $1\leq i\leq k$ and every $y\in\reals$ we write
+\begin{equation*}
+    x_{-i} = (x_{1}, \ldots, x_{i - 1}, x_{i + 1}, \ldots, x_{k}) ~\text{ and }~ (x_{-i}, y) = (x_{1}, \ldots, x_{i - 1}, y, x_{i + 1}, \ldots, x_{k}).
+\end{equation*}
+For a function $f$ defined on a subset of $\reals^{k}$ we further denote by $f(x_{-i}, \cdot)$ the mapping defined by
+\begin{equation*}
+    f(x_{-i}, \cdot)(y) = f(x_{-i}, y),
+\end{equation*}
+for suitable $x\in\reals^{k}$, $y\in\reals$.
+
+\begin{theorem}[Nash's theorem]
+    Let $G = (S, \pi)$ be a strategic game such that for every $i = 1, 2$ the following assumptions hold:
+    \begin{enumerate}
+        \item $S_{i}$ is a non-empty, convex and compact subset of $\reals^{k_{i}}$ for some $k_{i}\in\nats$
+        \item $\pi_{i}$ is continuous
+        \item For every $s\in S_{i}$ the function $\pi_{i}(s_{-i}, \cdot)$ is quasi-concave on $S_{i}$, i.e. for every $x, y \in\reals$ such that
+            $(s_{-i}, x), (s_{-i}, y)\in S_{i}$ and every $t\in[0, 1]$ it holds 
+            \begin{equation*}
+                \pi_{i}(s_{-i}, \cdot)(tx + (1 - t)y)\geq\min(\pi_{i}(s_{-i}, \cdot)(x), \pi_{i}(s_{-i}, \cdot)(y)).
+            \end{equation*}
+    \end{enumerate}
+    Then $G$ has at least one Nash equilibrium.
+\end{theorem}
+
+For a proof of this theorem see for example \cite{gonzalez2010introductory}, Section 2.2.
+
+So far we considered only so called pure strategies. This refers to situation where any player plays exactly (in a deterministic manner) only the strategies which 
+are available in its strategy set. We will introduce now as well so called mixed strategies in the case where the strategy set of each player is finite. Games of this
+kind are called finite.
+
+\begin{definition}
+    Let $G = (S, \pi)$ be a finite strategic game and let $\mathcal{D}(S_{i})$, $i = 1, 2$ be the set of all probability distributions over the set $S_{i}$. Then any probability
+    distribution $\mu_{i}\in\mathcal{D}(S_{i})$ is called a mixed strategy of the $i$-th player.
+\end{definition}
+
+\begin{remark}
+    \begin{enumerate}
+        \item Every pure strategy is also a mixed strategy.
+        \item Each of the sets $\mathcal{D}(S_{i})$ can be identified with
+            \begin{equation*}
+                \Sigma_{i} = \{(\sigma_{1}, \ldots, \sigma_{m_{i}})\in\reals_{\geq0}^{m_{i}} : \sum_{j = 1}^{m_{i}}\sigma_{j} = 1\},
+            \end{equation*}
+            where $m_{i} = |S_{i}|$. Consequently any mixed strategy can be respresented by a probability vector $\sigma\in\reals_{\geq0}^{m_{i}}$, where
+            its $j$-th component $\sigma_{j}$ corresponds to the probability with which the pure strategy $s_{j}\in S_{i}$ is chosen. To point this
+            out we write also $\sigma_{j} = p^{(i)}(s_{j})$.
+        \item Representing pure strategies $s_{j}\in S_{i}$ by means of the canonical basis vectors in $\reals^{m_{i}}$, $m_{i} = |S_{i}|$, i.e.
+            \begin{equation*}
+                s_{j} = (0, \ldots, 0, 1, 0, \ldots, 0),
+            \end{equation*}
+            allows to write each mixed $\sigma\in\Sigma_{i}$ as linear combination of pure strategies as follows
+            \begin{equation*}
+                \sigma = \sum_{j = 1}^{m_{i}}\sigma_{j}s_{j} = \sum_{j = 1}^{m_{i}}p^{(i)}(s_{j})s_{j}
+            \end{equation*}
+        \item To look at mixed strategies is particularly interesting in the case of repeated games. Since each strategy is probabilistic, neither player knows
+            for sure which plan of action the other player will use (plan of action is not predictible). 
+    \end{enumerate}
+\end{remark}
+
+\begin{definition}
+    Let $G = (S, \pi)$ be a finite strategic game. Then the mixed extension of $G$ is the game $\mathcal{E}(G) = (\Sigma, \hat{\pi})$, where 
+    $\Sigma = \Sigma_{1}\times\Sigma_{2}$ and 
+    \begin{equation*}
+         \hat{\pi}_{i}(\sigma_{1}, \sigma_{2}) 
+            = \sum_{s_{1}\in S_{1}, s_{2}\in S_{2}}\pi_{i}(s_{1}, s_{2})p^{(l)}(s_{1})p^{(l)}(s_{2}), ~~ \sigma_{l} = \sum_{s\in S_{l}}p^{(l)}(s)s, ~l = 1, 2
+    \end{equation*}
+    for $i = 1, 2$.
+\end{definition}
+
+\begin{remark}
+    \begin{enumerate}
+        \item The mixed extension $\mathcal{E}(G)$ is again a strategic game in the sense of Definition \ref{def:game}
+        \item Note, that $\hat{\pi}_{i}$ and $\pi_{i}$ coincide on $S$, thus $\hat{\pi}_{i}$ is an extension of $\pi$ to $\Sigma$. For the sake of readibility
+            we do not distinguish between $\pi_{i}$ and $\hat{\pi}_{i}$.
+        \item Let $|S_{1}| = m_{1}$, $|S_{2}| = m_{2}$. Let us identify $S_{1}$, $S_{2}$ with the sets $\{1, \ldots, m_{1}\}$
+            and $\{1, \ldots, m_{2}\}$ respectively. Definining the matrices $A_{1}, A_{2}\in\reals^{m_{1}\times m_{2}}$ via
+            \begin{equation*}
+                A_{l} = (\pi_{l}(i, j))_{1\leq i\leq m_{1}, 1\leq j\leq m_{2}}, ~l = 1, 2
+            \end{equation*}
+            we can write
+            \begin{align*}
+                \pi_{i}(\sigma_{1}, \sigma_{2}) = \sigma_{1}A_{i}\sigma_{2}^{T}, ~ i = 1, 2.
+            \end{align*}
+            In this case the game can entirely be characterised by the matrices $A_{1}, A_{2}$. A game of this kind is called bimatrix game.
+    \end{enumerate}
+\end{remark}
+
+\begin{corollary}
+    Let $G = (S, \pi)$ be a finite strategic game. Then the mixed extension $\mathcal{E}(G)$ of $G$ has a Nash equilibrium.
+\end{corollary}
+
+\begin{example}[Matchig pennies - mixed extension]\label{ex:pennies_mixed}
+    Consider the mixed strategies $\sigma_{1} = (p, 1 - p)$, $\sigma_{2} = (q, 1 - q)$ for player $1$ and player $2$. Hence player $1$ plays heads
+    with probability $p$ and plays tails with probability $1 - p$ - the analogous statement holds for player $2$ with $q$ instead of $p$. 
+    The payoffs are given as
+    \begin{align*}
+        &\pi_{1}(\sigma_{1}, \sigma_{2}) = pq - p(1 - q) - (1 - p)q + (1 - p)(1 - q) = 1 - 2q + 2p(2q - 1), \\
+        &\pi_{2}(\sigma_{1}, \sigma_{2}) = -pq + p(1 - q) + (1 - p)q - (1 - p)(1 - q) = -1 + 2p - 2q(2p - 1)
+    \end{align*}
+    We aim to find values for $p, q \in[0, 1]$ such that a Nash equilibrium appears. Let us define $f_{1}(p, q) = 1 - 2q + 2p(2q - 1)$ and 
+    $f_{2} =  -1 + 2p - 2q(2p - 1)$ on $[0, 1]^{2}$ respectively. Since
+    \begin{align*}
+        \partial_{1}f_{1}(p, q) = 2(2q - 1), ~~~ \partial_{2}f_{2}(p, q) = -2(2p - 1)
+    \end{align*}
+    we infer first $f_{1}(p, 1 / 2)\geq f_{1}(p, q)$ and $f_{2}(1 / 2, q)\geq f_{2}(p, q)$. Since $f_{1}(1 / 2, 1 / 2) = f_{1}(p, 1 / 2)$ and 
+    $f_{2}(1 / 2, 1 / 2) = f_{2}(1 / 2, q)$ for every $p, q$ we conclude that the mixed strategies according to $p = 1 / 2$ and $q = 1 / 2$ 
+    build a Nash equilibrium.
+\end{example}
+
+\begin{example}[Penalty kicks]\label{ex:penalties}
+    Let us consider a simplified penalty kick sitation in football. We make the following simplifying assumptions
+    \begin{itemize}
+        \item Kicker and goalkeeper act simultaneously and independently.
+        \item Kicker and goalkeeper have only two choices: kick left/right and jump left/right respectively
+        \item If both choose the same side, then the goalkeeper saves the penalty.
+        \item The kicker is right-footed, which makes it more likely that he scores when kicking to the left
+    \end{itemize}
+    The tabular form of the game is as follows
+    \begin{center}
+        \begin{tabular}{c | r | c | c |}
+            \multicolumn{2}{c}{} & \multicolumn{2}{c}{Goalkeeper}\\
+            \cline{2-4}
+            & & $l$ & $r$ \\
+            \cline{2-4}
+            \multirow{2}{*}{Kicker} & $l$ & (0, 0) & (2, -2) \\
+            \cline{2-4}
+            & $r$ & (1, -1) & (0, 0)) \\
+            \cline{2-4}
+        \end{tabular}            
+    \end{center}
+    We aim to find Nash equilibria of this game. We observe that this game has no pure Nash equilibrium. Let us for example comsider the pair $(l, r)$, i.e.
+    the kicker shoots left and the goalkeeper jumps to the right. Then the goalkeeper could increase his payoff if jumping to the left.
+    Let us now consider the mixed strategies $\sigma_{1} = (p, 1 - p)$, $\sigma_{2} = (q, 1 - q)$. Then it holds
+    \begin{align*}
+        &\pi_{1}(\sigma_{1}, \sigma_{2}) = 2p (1 - q) + (1 - p) q = 2p - 3pq + q\\
+        &\pi_{2}(\sigma_{1}, \sigma_{2}) = -2p (1 - q) - (1 - p) q = 3pq - 2p - q
+    \end{align*}
+    Using the same approach as in Example \ref{ex:pennies_mixed} we find a Nash equilibrium for $p = 1 / 3$, $q = 2 / 3$.
+\end{example}
+
+    % \begin{example}[The instigation game]
+        
+    % \end{example}
+
+\begin{example}[Battle of the sexes]
+    A man and a woman would like to go out for a date and decide to go to a concert. They have two choices - Metallica ($M$) or The Editors ($E$). Florian perfers 
+    Metallica and Susanne prefers The Editors. Both would like to go the same event rather than to go to different concerts. We model this situation by means
+    of a strategic game. The tabular form of it is given by
+    \begin{center}
+        \begin{tabular}{c | r | c | c |}
+            \multicolumn{2}{c}{} & \multicolumn{2}{c}{Susanne}\\
+            \cline{2-4}
+            & & $M$ & $E$ \\
+            \cline{2-4}
+            \multirow{2}{*}{Florian} & $M$ & (3, 2) & (1, 1) \\
+            \cline{2-4}
+            & $E$ & (0, 0) & (2, 3)) \\
+            \cline{2-4}
+        \end{tabular}            
+    \end{center}
+    We infer that this game has two pure strategiy pairs forming a Nash equilibrium, namely $(M, M), (E, E)$. Additionally one can prove that this
+    game has as well a Nash equilibrium consisting of mixed strategies. But how should the couple decide? In the literature several approaches to 
+    deal with such situations are discussed. One could for example use a convention, or generalise the solution concept of Nash (correlated equilibrium).
+\end{example}

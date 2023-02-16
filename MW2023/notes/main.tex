@@ -1,0 +1,142 @@
+\documentclass[
+    a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper, ...
+    % landscape,   %% sets the orientation to landscape
+    % twoside,     %% changes to a two-page-layout (alternatively: oneside)
+    % twocolumn,   %% changes to a two-column-layout
+        headsepline, %% add a horizontal line below the column title
+    % footsepline, %% add a horizontal line above the page footer
+    % titlepage,   %% only the titlepage (using titlepage-environment) appears on the first page (alternatively: notitlepage)
+        halfparskip,     %% insert an empty line between two paragraphs (alternatively: halfparskip, ...)
+    % leqno,       %% equation numbers left (instead of right)
+        fleqn,       %% equation left-justified (instead of centered)
+    % tablecaptionabove, %% captions of tables are above the tables (alternatively: tablecaptionbelow)
+    % draft,       %% produce only a draft version (mark lines that need manual edition and don't show graphics)
+    % 10pt         %% set default font size to 10 point
+    % 11pt         %% set default font size to 11 point
+    10pt         %% set default font size to 12 point
+    ]{scrartcl}  %% article, see KOMA documentation (scrguide.dvi)
+    
+    
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% packages
+%%%
+        
+%%%
+%%% encoding and language set
+%%%
+
+\usepackage[english]{babel}
+
+%%% inputenc: coding of german special characters
+\usepackage[latin1]{inputenc}
+
+%%% fontenc, ae, aecompl: coding of characters in PDF documents
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+\usepackage{xcolor}
+
+%%%
+%%% technical packages
+%%%
+
+\usepackage{listings}
+\definecolor{green_code}{rgb}{0,0.6,0}
+\lstdefinestyle{myCodeSnippetStyle}{
+    language = python,
+    commentstyle = \color{green_code},
+    basicstyle = \footnotesize,
+    gobble = 8,
+    frame = single
+}
+\lstset{style = myCodeSnippetStyle}
+
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat = 1.16}
+
+\usepackage{multirow}
+
+%%% amsmath, amssymb, amstext: support for mathematics
+\usepackage{amsmath,amssymb,amstext, amsthm}
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% user defined commands
+%%%
+
+\newtheorem{lemma}{Lemma}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newtheorem{corollary}{Corollary}[section]
+
+\newtheorem{proposition}{Proposition}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\theoremstyle{remark}
+\newtheorem{example}{Example}
+        
+\newcommand{\nats}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+
+\newcommand{\argmin}{\operatorname{argmin}}
+\newcommand{\argmax}{\operatorname{argmax}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% define the titlepage
+%%%
+
+\subject{Modelling week 2022}   %% subject which appears above titlehead
+% \titlehead{} %% special heading for the titlepage
+
+%%% title
+\title{My notes on mathematical game theory}
+
+%%% author(s)
+\author{Florian Thaler}
+
+%%% date
+\date{Graz, Sommersemester 2022}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% begin document
+%%%
+
+\begin{document}
+
+    \maketitle
+
+    \tableofcontents
+    \newpage
+    \section{Basics}
+        \input{basics}
+        \newpage
+
+    \section{Matrix games}
+        \input{matrixGames}
+        \newpage
+
+    \section{Repeated games}
+        \input{repeatedGames}
+        \newpage
+
+    \section{Appendix}
+        \input{appendix}
+        \newpage
+
+    \bibliographystyle{plain}
+    \bibliography{myBib}
+
+\end{document}

@@ -1,0 +1,68 @@
+% choose some color theme
+\usecolortheme{seagull}
+
+% inner theme setting
+\useinnertheme{rectangles}
+
+% ad bibliography: use numbers instead of icons in the bibliography
+\setbeamertemplate{bibliography item}[text]
+
+% insert logo on the upper right corner of each slide
+\setbeamertemplate{headline}
+{
+    \hfill
+    \includegraphics[width = 2.5cm]{logo.pdf}
+}
+
+% horizontal line and shifting frametitle up
+\setbeamertemplate{frametitle}{\usebeamerfont{title}\bf\insertframetitle\par\vskip-6pt\line(1,0){240}}
+\addtobeamertemplate{frametitle}{\vskip-7.5mm}{}
+
+% remove navigation bar
+\setbeamertemplate{navigation symbols}{}
+
+% definition of colors and fonts
+\setbeamercolor{footer_gray}{fg = black, bg = lightgray}
+\setbeamercolor{footer_white}{fg = black, bg = white}
+
+\setbeamercolor{title}{fg = black}
+\setbeamercolor{frametitle}{fg = black}
+
+\setbeamerfont{title}{series = \bfseries}
+\setbeamerfont{frametitle}{series = \bfseries}
+
+    %\setbeamerfont{subtitle}{size=\scriptsize,series=\bfseries,parent=structure}
+    %\setbeamerfont{author}{size=\scriptsize,series=\bfseries,parent=structure}
+    %\setbeamerfont{institute}{size=\scriptsize,series=\bfseries,parent=structure}
+    %\setbeamerfont{date}{size=\scriptsize,series=\bfseries,parent=structure}
+
+\AtBeginEnvironment{definition}
+{
+	\begin{tcolorbox}[title=Definition]
+}
+\AtEndEnvironment{definition}
+{
+	\end{tcolorbox}
+}
+
+
+% footline
+\setbeamertemplate{footline}
+{	
+	\leavevmode	% vertical mode is ended and horizontal mode is entered;
+				% boxes are stacked horizontally ...
+	\hbox{%
+		\begin{beamercolorbox}[wd = .666\paperwidth, ht = 2mm, dp = 1mm, center]{footer_gray}
+			%\usebeamerfont{title in head/foot}
+			\inserttitle
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd = .333\paperwidth, ht = 2mm, dp = 1mm, center]{footer_white}
+			%\usebeamerfont{author in head/foot}
+			\insertauthor
+			\hfill
+			\insertframenumber{} / \inserttotalframenumber
+			%\hspace*{2mm}
+		\end{beamercolorbox}
+  }
+  \vskip0pt%
+}

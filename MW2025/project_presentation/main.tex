@@ -4,6 +4,8 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+\usepackage{graphics}
+\graphicspath{ {./images/} }
 
 %% Enter presentation metadata
 \title[Short Title]{Computer vision}
@@ -14,6 +16,8 @@
 %\instituteurl{www.yourinstitute.tugraz.at}
 
 \begin{document}
+
+	\setbeamertemplate{caption}{\raggedright\insertcaption\par}
 
 	\begin{frame}[plain]
   	\maketitle
@@ -27,59 +31,50 @@
 	\section{Einleitung}
 	
 		\begin{frame}{Motivierendes Beispiel}
-	  	...
+	  	\begin{figure}
+				\includegraphics[width=1.0\textwidth]{stitching_1}
+			\end{figure}
 		\end{frame}
 
 
-	\section{Computer vision I}
+	\section{Computer vision}
 
 		\begin{frame}
-			\frametitle{Computer vision}
+			\frametitle{Computer vision I}
 			\begin{columns}
-				\column{.1\textwidth}
 				\column{.4\textwidth}
 					\begin{itemize}
 		 		  	\item Verarbeitung und Analyse von Bildern
 						\item Aufgaben
 							\begin{itemize}
-								\item Image denoising und image deblurring, ...
+								\item Image denoising, image deblurring, ...
 								\item Objekterkennung, Bildklassifikation, Segmentierung, ...
 								\item ...
 							\end{itemize}
 					\end{itemize}
 				\column{.4\textwidth}
+					\begin{figure}[t]
+						\includegraphics[width=1.5\textwidth]{computer_vision_2}
+						\caption{\tiny Vision systems}
+					\end{figure}
 				\column{.1\textwidth}
 			\end{columns}
-	  	\begin{itemize}
-				\item Anwendungsbereiche
-					\begin{itemize}
-						\item Medizin
-						\item Automotive
-						\item Logistik
-						\item ...
-					\end{itemize}
-				\item Grundlagendisziplinen von computer vision
-					\begin{itemize}
-						\item Mathematik und Statistik
-						\item Computer science
-						\item ...
-					\end{itemize}
-		  \end{itemize}
 		\end{frame}
 
 		\begin{frame}
 			\frametitle{Computer vision II}
 			\begin{columns}
-				\column{.1\textwidth}
 				\column{.4\textwidth}
 			  	\begin{itemize}
 						\item Anwendungsbereiche
 							\begin{itemize}
+								\vspace{\baselineskip}
 								\item Medizin
 								\item Automotive, Logistik
 								\item Fotografie
 								\item ...
 							\end{itemize}
+
 						\item Grundlagendisziplinen
 							\begin{itemize}
 								\item Mathematik und Statistik
@@ -88,6 +83,13 @@
 							\end{itemize}
 					\end{itemize}
 				\column{.4\textwidth}
+          \begin{figure}[t]
+            \includegraphics[width=1.0\textwidth]{computer_vision_1}
+          \end{figure}
+          \vspace{\baselineskip}
+					\vspace{\baselineskip}
+					\vspace{\baselineskip}
+					\vspace{\baselineskip}
 				\column{.1\textwidth}
 			\end{columns}
 			
@@ -96,23 +98,28 @@
   \section{Projektinhalte}
 
     \begin{frame}
-      \frametitle{Inhalte}
-
-      \begin{itemize}
-        \item Grundlagen der Bildverarbeitung
-          \begin{itemize}
-            \item Mathematisches Bildmodell
-            \item Transformation von Bildern
-            \item Merkmale von Bildern und Merkmalsextraktion
-            \item ...
-          \end{itemize}
-        \item Programmierung
-          \begin{itemize}
-            \item Erste Schritte in Python und OpenCV
-            \item Implementierung eines Algorithmus zum image stitching
-          \end{itemize}
-      \end{itemize}
-
+      \frametitle{Projektinhalte}
+			\begin{columns}
+				\column{.5\textwidth}
+		      \begin{itemize}
+  		      \item Grundlagen der Bildverarbeitung
+    		      \begin{itemize}
+      		      \item Mathematisches Bildmodell
+      	  	    \item Transformation von Bildern
+          		  \item Merkmale von Bildern und Merkmalsextraktion
+	          	  \item ...
+	  	        \end{itemize}
+  	  	    \item Programmierung
+    	      	\begin{itemize}
+	   		  	  \item Erste Schritte in Python und OpenCV
+							\item Implementierung eines Algorithmus zum image stitching
+    	    	\end{itemize}
+		      \end{itemize}
+				\column{.4\textwidth}
+					\begin{figure}
+						\includegraphics[width=0.7\textwidth]{python_and_opencv}
+					\end{figure}
+			\end{columns}
     \end{frame}
 
   \section{Ziele des Projekts}
